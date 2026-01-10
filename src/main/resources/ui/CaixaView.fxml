@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="br.com.fotocastro.ui.CaixaController"
+            styleClass="app-root caixa-root">
+
+    <!-- TOPO -->
+    <top>
+        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="topbar">
+            <children>
+                <Label text="💰 Caixa" styleClass="app-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="lblCaixaStatus" text="🟢 Caixa Aberto" styleClass="status-ok"/>
+                <Label fx:id="lblStatus" styleClass="user-label"/>
+            </children>
+        </HBox>
+    </top>
+
+    <!-- CONTEÚDO -->
+    <center>
+        <VBox spacing="16" VBox.vgrow="ALWAYS">
+
+                        <!-- CARROSSEL DE TEMPLATES -->
+            <VBox spacing="12"
+                styleClass="card templates-carousel"
+                style="-fx-padding: 20;"
+                VBox.vgrow="NEVER">
+
+                <!-- Header -->
+                <HBox spacing="12" alignment="CENTER_LEFT">
+                    <Label text="⚡ Templates Rápidos" styleClass="section-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="＋ Novo" onAction="#handleNovoTemplate" styleClass="btn-primary"/>
+                    <Button text="🛠 Editar" onAction="#handleEditarTemplate" styleClass="btn-ghost"/>
+                    <Button fx:id="btnRemoverTemplate" text="✖" onAction="#handleRemoverTemplate" styleClass="btn-danger" prefWidth="50" prefHeight="40"/>
+                </HBox>
+
+                <!-- Área do carrossel verdadeiro -->
+                <HBox spacing="12" alignment="CENTER">
+
+                    <Button text="◀"
+                            styleClass="carousel-nav-btn"
+                            onAction="#previousTemplate"/>
+
+                        <!-- StackPane que vai conter o track deslizante -->
+                        <StackPane prefHeight="140" maxHeight="140" minHeight="140" HBox.hgrow="ALWAYS">
+                            <children>
+                                <!-- HBox que vai ser o "track" com todos os cards -->
+                                <HBox fx:id="carouselTrack"
+                                      alignment="CENTER_LEFT"
+                                      spacing="20"
+                                      style="-fx-padding: 20 40 10 0;">
+                                    <!-- Cards adicionados via controller -->
+                                </HBox>
+                            </children>
+
+                            <!-- Clip aplicado diretamente no StackPane, usando a própria largura -->
+                            <clip>
+                                <Rectangle width="${carouselTrack.width}" height="200" arcWidth="12" arcHeight="12"/>
+                            </clip>
+                        </StackPane>
+
+                    <Button text="▶"
+                            styleClass="carousel-nav-btn"
+                            onAction="#nextTemplate"/>
+                </HBox>
+            </VBox>
+
+    <!-- ========== SPLIT: VENDAS + RESUMO ========== -->
+                <SplitPane dividerPositions="0.60" VBox.vgrow="ALWAYS">
+
+    <!-- ===== ESQUERDA: OPERAÇÕES ===== -->
+    <VBox spacing="12" style="-fx-padding: 0 8 0 0;">
+
+        <!-- Registro rápido -->
+        <VBox spacing="10" styleClass="card" style="-fx-padding: 16;">
+            <Label text="📝 Registrar Venda Manual" styleClass="section-title"/>
+            
+            <HBox spacing="8">
+                <TextField fx:id="txtDesc"
+                        promptText="Descrição"
+                        HBox.hgrow="ALWAYS"/>
+
+                <TextField fx:id="txtPreco"
+                        promptText="Valor"
+                        prefWidth="100"/>
+
+                <ChoiceBox fx:id="cbMetodo" prefWidth="110"/>
+
+                <Button text="✓ Adicionar"
+                        onAction="#handleAdicionarVenda"
+                        styleClass="btn-primary"/>
+            </HBox>
+        </VBox>
+
+        <!-- Tabela de vendas -->
+        <VBox spacing="10" styleClass="card" style="-fx-padding: 16;" VBox.vgrow="ALWAYS">
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="📋 Vendas de Hoje" styleClass="section-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="lblTotalVendas" text="0 vendas" styleClass="user-label"/>
+            </HBox>
+
+            <HBox spacing="8" style="-fx-padding: 8 0;">
+                <Button text="🛠 Editar" onAction="#handleEditarVenda" styleClass="btn-ghost"/>
+                <Button text="✖ Remover" onAction="#handleRemoverVenda" styleClass="btn-ghost"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="⟲ Limpar Hoje" onAction="#handleLimparVendasHoje" styleClass="btn-ghost"/>
+                <Button text="⏻ Fechar Caixa" onAction="#handleFecharCaixa" styleClass="btn-danger"/>
+            </HBox>
+
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" style="-fx-background: transparent;">
+                <content>
+                    <TableView fx:id="tblVendas">
+                        <columns>
+                            <TableColumn text="Hora" fx:id="colData" prefWidth="80"/>
+                            <TableColumn text="Descrição" fx:id="colDesc" prefWidth="200"/>
+                            <TableColumn text="Valor" fx:id="colBruto" prefWidth="80"/>
+                            <TableColumn text="Método" fx:id="colMetodo" prefWidth="90"/>
+                            <TableColumn text="Taxa" fx:id="colTaxa" prefWidth="70"/>
+                            <TableColumn text="Líquido" fx:id="colLiq" prefWidth="80"/>
+                        </columns>
+                    </TableView>
+                </content>
+            </ScrollPane>
+        </VBox>
+    </VBox>
+
+
+                    <!-- ===== DIREITA: DASHBOARD ===== -->
+                    <VBox spacing="12" style="-fx-padding: 0 0 0 8;">
+
+                        <!-- Card: Total Líquido (DESTAQUE) -->
+                        <VBox spacing="6" styleClass="card" style="-fx-padding: 20; -fx-background-color: linear-gradient(to bottom right, #10b981, #059669);">
+                            <Label text="💰 TOTAL LÍQUIDO HOJE" style="-fx-text-fill: white; -fx-font-size: 11px; -fx-font-weight: 700; -fx-opacity: 0.9;"/>
+                            <Label fx:id="lblLiquidoHoje" text="R$ 0,00" style="-fx-text-fill: white; -fx-font-size: 36px; -fx-font-weight: 900;"/>
+                            <HBox spacing="6" alignment="CENTER_LEFT">
+                                <Label fx:id="lblVariacaoDia" text="📈 +0,0%" style="-fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: 700;"/>
+                                <Label text="vs. ontem" style="-fx-text-fill: white; -fx-font-size: 10px; -fx-opacity: 0.8;"/>
+                            </HBox>
+                        </VBox>
+
+                        <!-- Cards: Bruto e Taxas -->
+                        <HBox spacing="12">
+                            <VBox spacing="4" styleClass="card" style="-fx-padding: 16;" HBox.hgrow="ALWAYS">
+                                <Label text="BRUTO" styleClass="card-title"/>
+                                <Label fx:id="lblBrutoHoje" text="R$ 0,00" style="-fx-font-size: 24px; -fx-font-weight: 900; -fx-text-fill: #3b82f6;"/>
+                            </VBox>
+
+                            <VBox spacing="4" styleClass="card" style="-fx-padding: 16;" HBox.hgrow="ALWAYS">
+                                <Label text="TAXAS" styleClass="card-title"/>
+                                <Label fx:id="lblTaxasHoje" text="R$ 0,00" style="-fx-font-size: 24px; -fx-font-weight: 900; -fx-text-fill: #ef4444;"/>
+                            </VBox>
+                        </HBox>
+
+                        <Separator/>
+
+                        <!-- Métodos de pagamento -->
+                        <VBox spacing="10" styleClass="card" style="-fx-padding: 16;">
+                            <Label text="💳 Por Método (Hoje)" styleClass="section-title"/>
+                            
+                            <VBox spacing="8">
+                                <HBox spacing="8" alignment="CENTER_LEFT">
+                                    <Label text="💵" style="-fx-font-size: 18px;"/>
+                                    <VBox>
+                                        <Label text="Dinheiro" style="-fx-font-size: 11px; -fx-text-fill: #64748b;"/>
+                                        <Label fx:id="lblDinheiroHoje" text="R$ 0,00" style="-fx-font-size: 18px; -fx-font-weight: 800;"/>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Label fx:id="lblDinheiroPercent" text="0%" style="-fx-font-size: 14px; -fx-font-weight: 700; -fx-text-fill: #64748b;"/>
+                                </HBox>
+
+                                <HBox spacing="8" alignment="CENTER_LEFT">
+                                    <Label text="💳" style="-fx-font-size: 18px;"/>
+                                    <VBox>
+                                        <Label text="Cartão" style="-fx-font-size: 11px; -fx-text-fill: #64748b;"/>
+                                        <Label fx:id="lblCartaoHoje" text="R$ 0,00" style="-fx-font-size: 18px; -fx-font-weight: 800;"/>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Label fx:id="lblCartaoPercent" text="0%" style="-fx-font-size: 14px; -fx-font-weight: 700; -fx-text-fill: #64748b;"/>
+                                </HBox>
+
+                                <HBox spacing="8" alignment="CENTER_LEFT">
+                                    <Label text="📱" style="-fx-font-size: 18px;"/>
+                                    <VBox>
+                                        <Label text="PIX" style="-fx-font-size: 11px; -fx-text-fill: #64748b;"/>
+                                        <Label fx:id="lblPixHoje" text="R$ 0,00" style="-fx-font-size: 18px; -fx-font-weight: 800;"/>
+                                    </VBox>
+                                    <Region HBox.hgrow="ALWAYS"/>
+                                    <Label fx:id="lblPixPercent" text="0%" style="-fx-font-size: 14px; -fx-font-weight: 700; -fx-text-fill: #64748b;"/>
+                                </HBox>
+                            </VBox>
+                        </VBox>
+
+                        <Separator/>
+
+                        <!-- Totais Gerais (todo período) -->
+                        <VBox spacing="8" styleClass="card" style="-fx-padding: 16;">
+                            <Label text="📊 Totais Gerais" styleClass="section-title"/>
+                            
+                            <HBox spacing="8" alignment="CENTER_LEFT">
+                                <Label text="Total Bruto:" style="-fx-font-weight: 600;"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label fx:id="lblBrutoTotal" text="R$ 0,00" styleClass="status-value"/>
+                            </HBox>
+
+                            <HBox spacing="8" alignment="CENTER_LEFT">
+                                <Label text="Total Líquido:" style="-fx-font-weight: 600;"/>
+                                <Region HBox.hgrow="ALWAYS"/>
+                                <Label fx:id="lblLiquidoTotal" text="R$ 0,00" styleClass="status-value"/>
+                            </HBox>
+                        </VBox>
+
+                    </VBox>
+
+                </SplitPane>
+
+            </VBox>
+        </center>
+
+    </BorderPane>

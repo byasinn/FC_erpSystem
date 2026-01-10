@@ -1,0 +1,183 @@
+package br.com.fotocastro.service;
+
+import br.com.fotocastro.infra.TemplateDaoH2;
+import br.com.fotocastro.model.TemplateVenda;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.logging.Logger;
+
+/**
+ * Serviço para gerenciamento de templates de venda.
+ * Fornece lógica de negócio e validações.
+ */
+public class TemplateService {
+    
+    private static final Logger logger = Logger.getLogger(TemplateService.class.getName());
+    
+    private final TemplateDaoH2 templateDao;
+    
+    public TemplateService() {
+        this.templateDao = new TemplateDaoH2();
+    }
+    
+    // Construtor para injeção de dependência (testes)
+    public TemplateService(TemplateDaoH2 templateDao) {
+        this.templateDao = templateDao;
+    }
+    
+    // ========== OPERAÇÕES CRUD ==========
+    
+    /**
+     * Cria um novo template
+     */
+    public Long criarTemplate(String nome, double preco) {
+        // Validações
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome do template é obrigatório");
+        }
+        
+        if (preco < 0) {
+            throw new IllegalArgumentException("Preço não pode ser negativo");
+        }
+        
+        // Verifica se já existe
+        if (templateDao.buscarPorNome(nome.trim()).isPresent()) {
+            throw new IllegalArgumentException("Já existe um template com esse nome: " + nome);
+        }
+        
+        TemplateVenda template = new TemplateVenda(nome.trim(), preco);
+        
+        logger.info(String.format("Criando template: %s - R$ %.2f", nome, preco));
+        
+        return templateDao.inserir(template);
+    }
+    
+    /**
+     * Atualiza um template existente
+     */
+    public void atualizarTemplate(Long id, String nome, double preco) {
+        if (id == null) {
+            throw new IllegalArgumentException("ID do template não pode ser nulo");
+        }
+        
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome do template é obrigatório");
+        }
+        
+        if (preco < 0) {
+            throw new IllegalArgumentException("Preço não pode ser negativo");
+        }
+        
+        // Verifica se o template existe
+        TemplateVenda existente = templateDao.buscarPorId(id).orElseThrow(
+            () -> new IllegalArgumentException("Template não encontrado: " + id)
+        );
+        
+        // Verifica se o novo nome já existe em outro template
+        Optional<TemplateVenda> outroComMesmoNome = templateDao.buscarPorNome(nome.trim());
+        if (outroComMesmoNome.isPresent() && !outroComMesmoNome.get().getId().equals(id)) {
+            throw new IllegalArgumentException("Já existe outro template com esse nome: " + nome);
+        }
+        
+        existente.setNome(nome.trim());
+        existente.setPreco(preco);
+        
+        templateDao.atualizar(existente);
+        logger.info("Template atualizado: " + nome);
+    }
+    
+    /**
+     * Remove um template
+     */
+    public void removerTemplate(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("ID não pode ser nulo");
+        }
+        
+        // Verifica se existe antes de remover
+        TemplateVenda template = templateDao.buscarPorId(id).orElseThrow(
+            () -> new IllegalArgumentException("Template não encontrado: " + id)
+        );
+        
+        logger.info("Removendo template: " + template.getNome());
+        templateDao.remover(id);
+    }
+    
+    // ========== CONSULTAS ==========
+    
+    /**
+     * Lista todos os templates
+     */
+    public List<TemplateVenda> listarTodos() {
+        return templateDao.listar();
+    }
+    
+    /**
+     * Busca template por ID
+     */
+    public Optional<TemplateVenda> buscarPorId(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("ID não pode ser nulo");
+        }
+        return templateDao.buscarPorId(id);
+    }
+    
+    /**
+     * Busca template por nome
+     */
+    public Optional<TemplateVenda> buscarPorNome(String nome) {
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("Nome não pode ser vazio");
+        }
+        return templateDao.buscarPorNome(nome.trim());
+    }
+    
+    /**
+     * Verifica se existe algum template cadastrado
+     */
+    public boolean existeAlgum() {
+        return templateDao.existeAlgum();
+    }
+    
+    /**
+     * Conta total de templates
+     */
+    public int contar() {
+        return templateDao.contar();
+    }
+    
+    // ========== INICIALIZAÇÃO ==========
+    
+    /**
+     * Cria templates padrão se não existir nenhum
+     */
+    public void inicializarTemplatesPadrao() {
+        if (existeAlgum()) {
+            logger.info("Templates já existem, pulando inicialização");
+            return;
+        }
+        
+        logger.info("Inicializando templates padrão...");
+        templateDao.criarTemplatesPadrao();
+    }
+    
+    /**
+     * Valida se o sistema tem templates mínimos
+     * Retorna true se tudo OK, false se precisa atenção
+     */
+    public boolean validarConfiguracao() {
+        int total = contar();
+        
+        if (total == 0) {
+            logger.warning("Nenhum template cadastrado! Configure ao menos um template.");
+            return false;
+        }
+        
+        if (total < 3) {
+            logger.info("Apenas " + total + " template(s) cadastrado(s). Considere adicionar mais opções.");
+        }
+        
+        return true;
+    }
+}

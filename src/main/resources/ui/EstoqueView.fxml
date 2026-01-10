@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="br.com.fotocastro.ui.EstoqueController"
+            styleClass="app-root">
+
+    <top>
+        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="topbar">
+            <children>
+                <Label text="Gestão de Estoque" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                <Button text="Novo" onAction="#handleNovo" styleClass="btn, btn-primary"/>
+                <Button text="Editar" onAction="#handleEditar" styleClass="btn, btn-ghost"/>
+                <Button text="Entrada (Lote)" onAction="#handleEntradaLote" styleClass="btn, btn-ghost"/>
+                <Button text="Saída (Consumo)" onAction="#handleSaida" styleClass="btn, btn-ghost"/>
+                <Button text="Remover" onAction="#handleRemover" styleClass="btn, btn-ghost"/>
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <TableView fx:id="tblEstoque" styleClass="table">
+            <columns>
+                <TableColumn text="Nome" fx:id="colNome" prefWidth="180"/>
+                <TableColumn text="Cor" fx:id="colCor" prefWidth="100"/>
+                <TableColumn text="Tamanho" fx:id="colTam" prefWidth="120"/>
+                <TableColumn text="Qtd" fx:id="colQtd" prefWidth="70"/>
+                <TableColumn text="Custo Total (R$)" fx:id="colCusto" prefWidth="130"/>
+                <TableColumn text="Custo Unit. (R$)" fx:id="colUnit" prefWidth="120"/>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

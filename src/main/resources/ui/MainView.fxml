@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="root"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="br.com.fotocastro.ui.MainController"
+            styleClass="app-root">
+
+
+    <top>
+        <HBox spacing="14"
+            alignment="CENTER_LEFT"
+            styleClass="topbar">
+
+            <children>
+                <!-- Marca -->
+                <VBox spacing="2">
+                    <Label text="FotoCastro" styleClass="app-title"/>
+                    <Label text="Sistema de Gestão" styleClass="app-subtitle"/>
+                </VBox>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- Navegação principal -->
+                <HBox spacing="8">
+                    <Button text="Início" onAction="#showHome" styleClass="nav-btn"/>
+                    <Button text="Caixa" onAction="#showCaixa" styleClass="nav-btn nav-primary"/>
+                    <Button text="Estoque" onAction="#showEstoque" styleClass="nav-btn"/>
+                    <Button text="Dashboard" onAction="#showDashboard" styleClass="nav-btn"/>
+                </HBox>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- Ações -->
+                <HBox spacing="8">
+                    <Label fx:id="lblUser" styleClass="user-label"/>
+                    <Button text="Tema" onAction="#toggleTheme" styleClass="icon-btn"/>
+                    <Button text="Sair" onAction="#handleExit" styleClass="icon-btn danger"/>
+                </HBox>
+            </children>
+
+            <padding>
+                <Insets top="12" right="16" bottom="12" left="16"/>
+            </padding>
+        </HBox>
+    </top>
+
+
+    <center>
+        <StackPane fx:id="contentRoot" styleClass="content-root"/>
+    </center>
+
+
+    <bottom>
+        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="statusbar">
+            <children>
+                <Label fx:id="lblStatus" text="Pronto."/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="lblDateTime" text=""/>
+            </children>
+            <padding><Insets top="8" right="12" bottom="8" left="12"/></padding>
+        </HBox>
+    </bottom>
+
+    <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+</BorderPane>

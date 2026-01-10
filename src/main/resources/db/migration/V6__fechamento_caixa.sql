@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS fechamento_caixa (
+    id IDENTITY PRIMARY KEY,
+    data DATE UNIQUE NOT NULL,
+    bruto DECIMAL(12,2) NOT NULL,
+    taxas DECIMAL(12,2) NOT NULL,
+    liquido DECIMAL(12,2) NOT NULL,
+    dinheiro DECIMAL(12,2) NOT NULL,
+    cartao DECIMAL(12,2) NOT NULL,
+    pix DECIMAL(12,2) NOT NULL,
+    fechado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="br.com.fotocastro.ui.DashboardController"
+            style="-fx-padding: 15;">
+
+    <!-- TOPO: RESUMO -->
+    <top>
+        <HBox spacing="20">
+            <VBox styleClass="card">
+                <Label text="Faturamento (30 dias)" styleClass="card-title"/>
+                <Label fx:id="lblTotalVendas" styleClass="card-value"/>
+            </VBox>
+
+            <VBox styleClass="card">
+                <Label text="Ticket Médio" styleClass="card-title"/>
+                <Label fx:id="lblTicketMedio" styleClass="card-value"/>
+            </VBox>
+
+            <VBox styleClass="card">
+                <Label text="Vendas Hoje" styleClass="card-title"/>
+                <Label fx:id="lblVendasHoje" styleClass="card-value"/>
+            </VBox>
+        </HBox>
+    </top>
+
+    <!-- CENTRO: GRÁFICO PRINCIPAL -->
+    <center>
+        <LineChart fx:id="chartVendasDiarias" title="Vendas Diárias (30 dias)">
+            <xAxis><CategoryAxis/></xAxis>
+            <yAxis><NumberAxis/></yAxis>
+        </LineChart>
+    </center>
+
+    <!-- BASE: DISTRIBUIÇÃO -->
+    <bottom>
+        <HBox spacing="15">
+            <BarChart fx:id="chartPorHora" title="Vendas por Hora">
+                <xAxis><CategoryAxis/></xAxis>
+                <yAxis><NumberAxis/></yAxis>
+            </BarChart>
+
+            <PieChart fx:id="chartTopTemplates" title="Templates Mais Vendidos"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

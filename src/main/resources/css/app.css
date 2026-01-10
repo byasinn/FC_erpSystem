@@ -1,0 +1,1187 @@
+/* ========================================
+   FotoCastro — Modern Premium UI
+   Inspiração: Notion + Linear + Stripe
+   ======================================== */
+
+/* ============================
+   ROOT BASE
+   ============================ */
+.app-root {
+    -fx-font-family: "Inter", -apple-system, "Segoe UI", sans-serif;
+    -fx-font-size: 13px;
+
+    /* LIGHT MODE TOKENS */
+    -fx-accent: #10b981;
+    -fx-accent-hover: #059669;
+    -fx-danger: #ef4444;
+    -fx-warning: #f59e0b;
+    -fx-purple: #8b5cf6;
+    -fx-blue: #3b82f6;
+
+    -fx-bg: #fafbfc;
+    -fx-bg-card: rgba(255, 255, 255, 0.92);
+    -fx-bg-hover: rgba(15, 23, 42, 0.04);
+    -fx-border: rgba(15, 23, 42, 0.06);
+    
+    -fx-text: #0f172a;
+    -fx-text-muted: #64748b;
+
+    -fx-padding: 16;
+    -fx-background-color: linear-gradient(to bottom right, #fafbfc, #f1f5f9);
+}
+
+/* Força herança de cor de texto */
+.app-root * {
+    -fx-text-fill: -fx-text;
+}
+
+/* ============================
+   DARK MODE (COMPLETO!)
+   ============================ */
+.dark {
+    -fx-accent: #10b981;
+    -fx-accent-hover: #34d399;
+    -fx-danger: #f87171;
+    -fx-warning: #fbbf24;
+    -fx-purple: #a78bfa;
+    -fx-blue: #60a5fa;
+
+    -fx-bg: #0a0c10;
+    -fx-bg-card: rgba(24, 27, 33, 0.85);
+    -fx-bg-hover: rgba(255, 255, 255, 0.06);
+    -fx-border: rgba(255, 255, 255, 0.08);
+    
+    -fx-text: #f1f5f9;
+    -fx-text-muted: #94a3b8;
+
+    -fx-background-color: #0a0c10;
+    -fx-background-color: linear-gradient(to bottom right, #0a0c10, #151820);
+}
+
+/* CRÍTICO: Tabelas no dark mode */
+.dark .table-view {
+    -fx-background-color: #0a0c10;
+}
+
+.dark .table-view .column-header-background {
+    -fx-background-color: rgba(24, 27, 33, 0.85);
+}
+
+.dark .table-view .filler {
+    -fx-background-color: #0a0c10;
+}
+
+.dark .table-view .corner {
+    -fx-background-color: #0a0c10;
+}
+
+.dark .table-row-cell {
+    -fx-background-color: #0a0c10;
+}
+
+.dark .table-row-cell:odd {
+    -fx-background-color: rgba(255, 255, 255, 0.02);
+}
+
+.dark .table-row-cell:hover {
+    -fx-background-color: rgba(16, 185, 129, 0.08);
+}
+
+.dark .table-row-cell:selected {
+    -fx-background-color: rgba(16, 185, 129, 0.18);
+}
+
+.dark .table-cell {
+    -fx-text-fill: #f1f5f9;
+}
+
+.dark .table-view .column-header .label {
+    -fx-text-fill: #94a3b8;
+}
+
+/* CRÍTICO: Background do dark mode em TUDO */
+.dark.app-root,
+.dark .app-root,
+.dark .home-root,
+.dark .content-root,
+.dark .border-pane,
+.dark .scene,
+.dark .root {
+    -fx-background-color: #0a0c10;
+    -fx-background-color: linear-gradient(to bottom right, #0a0c10, #151820);
+}
+
+/* Força TODOS os elementos no dark mode */
+.dark *,
+.dark .label,
+.dark .text,
+.dark .button,
+.dark .table-view .column-header .label,
+.dark .table-cell,
+.dark .titled-pane > .title,
+.dark .app-title,
+.dark .app-subtitle,
+.dark .section-title,
+.dark .card-title,
+.dark .card-value,
+.dark .status-value,
+.dark .user-label {
+    -fx-text-fill: #f1f5f9;
+}
+
+/* Textos secundários no dark */
+.dark .card-title,
+.dark .app-subtitle,
+.dark .user-label,
+.dark .statusbar .label,
+.dark .table-view .column-header .label {
+    -fx-text-fill: #94a3b8;
+}
+
+/* Inputs no dark mode */
+.dark .text-field,
+.dark .choice-box,
+.dark .combo-box,
+.dark .spinner {
+    -fx-background-color: rgba(15, 23, 42, 0.4);
+    -fx-text-fill: #f1f5f9;
+    -fx-prompt-text-fill: #64748b;
+}
+
+/* Buttons no dark mode */
+.dark .button {
+    -fx-text-fill: #f1f5f9;
+}
+
+.dark .nav-btn {
+    -fx-text-fill: #94a3b8;
+}
+
+.dark .nav-btn:hover {
+    -fx-text-fill: #f1f5f9;
+}
+
+/* Containers no dark */
+.dark .vbox,
+.dark .hbox,
+.dark .stack-pane,
+.dark .split-pane {
+    -fx-background-color: transparent;
+}
+
+/* ScrollPane viewport no dark */
+.dark .scroll-pane,
+.dark .scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+/* GridPane no dark */
+.dark .grid-pane,
+.dark GridPane {
+    -fx-background-color: transparent;
+}
+
+/* FlowPane no dark */
+.dark .flow-pane,
+.dark FlowPane {
+    -fx-background-color: transparent;
+}
+
+/* TitledPane content no dark */
+.dark .titled-pane > .content {
+    -fx-background-color: rgba(24, 27, 33, 0.85);
+}
+
+/* CRITICAL: Todos os Panes no dark */
+.dark VBox,
+.dark HBox,
+.dark BorderPane,
+.dark StackPane,
+.dark SplitPane,
+.dark AnchorPane,
+.dark FlowPane,
+.dark GridPane {
+    -fx-background-color: transparent;
+}
+
+/* ============================
+   CARDS (Efeito Glassmorphism)
+   ============================ */
+.card {
+    -fx-background-color: -fx-bg-card;
+    -fx-background-radius: 18px;
+    -fx-border-radius: 18px;
+    -fx-border-color: -fx-border;
+    -fx-border-width: 1;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 16, 0.25, 0, 4);
+}
+
+.card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 24, 0.3, 0, 6);
+    -fx-translate-y: -2;
+}
+
+.dark .card {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 20, 0.4, 0, 6);
+}
+
+.dark .card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 28, 0.5, 0, 8);
+}
+
+/* ============================
+   TYPOGRAPHY
+   ============================ */
+.app-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: 900;
+    -fx-text-fill: -fx-text;
+}
+
+.app-subtitle {
+    -fx-font-size: 11px;
+    -fx-text-fill: -fx-text-muted;
+    -fx-font-weight: 600;
+}
+
+.section-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: 800;
+    -fx-text-fill: -fx-text;
+}
+
+.card-title {
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -fx-text-muted;
+    -fx-text-transform: uppercase;
+    -fx-letter-spacing: 0.5;
+}
+
+.card-value {
+    -fx-font-size: 32px;
+    -fx-font-weight: 900;
+    -fx-text-fill: -fx-text;
+}
+
+.status-value {
+    -fx-font-weight: 700;
+    -fx-text-fill: -fx-accent;
+}
+
+.status-ok {
+    -fx-text-fill: -fx-accent;
+    -fx-font-weight: 700;
+}
+
+.user-label {
+    -fx-text-fill: -fx-text-muted;
+    -fx-font-weight: 600;
+}
+
+/* ============================
+   BUTTONS (Modernos)
+   ============================ */
+.button {
+    -fx-background-radius: 10;
+    -fx-padding: 10 18;
+    -fx-font-weight: 700;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+    -fx-background-color: -fx-bg-hover;
+    -fx-text-fill: -fx-text;
+    -fx-border-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.04), 6, 0.2, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: rgba(15, 23, 42, 0.08);
+    -fx-translate-y: -1;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0.25, 0, 3);
+}
+
+.dark .button {
+    -fx-background-color: rgba(255, 255, 255, 0.06);
+}
+
+.dark .button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.10);
+}
+
+.button:pressed {
+    -fx-translate-y: 0;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+/* Primary Button (Accent Verde) */
+.btn-primary,
+.button.primary {
+    -fx-background-color: linear-gradient(to bottom right, #10b981, #059669);
+    -fx-text-fill: white;
+    -fx-font-weight: 800;
+    -fx-effect: dropshadow(gaussian, rgba(16, 185, 129, 0.4), 12, 0.4, 0, 4);
+}
+
+.btn-primary:hover {
+    -fx-background-color: linear-gradient(to bottom right, #059669, #047857);
+    -fx-effect: dropshadow(gaussian, rgba(16, 185, 129, 0.6), 16, 0.5, 0, 6);
+}
+
+/* Ghost Button */
+.btn-ghost {
+    -fx-background-color: transparent;
+    -fx-border-color: -fx-border;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 10;
+    -fx-text-fill: -fx-text;
+}
+
+.btn-ghost:hover {
+    -fx-background-color: -fx-bg-hover;
+    -fx-border-color: -fx-text-muted;
+}
+
+/* Danger Button */
+.btn-danger {
+    -fx-background-color: -fx-danger;
+    -fx-text-fill: white;
+}
+
+.btn-danger:hover {
+    -fx-background-color: derive(-fx-danger, -10%);
+}
+
+/* Navigation Buttons */
+.nav-btn {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10;
+    -fx-padding: 8 16;
+    -fx-font-weight: 700;
+    -fx-text-fill: -fx-text-muted;
+    -fx-border-color: transparent;
+}
+
+.nav-btn:hover {
+    -fx-background-color: -fx-bg-hover;
+    -fx-text-fill: -fx-text;
+}
+
+.nav-primary {
+    -fx-background-color: rgba(16, 185, 129, 0.12);
+    -fx-text-fill: -fx-accent;
+}
+
+.nav-primary:hover {
+    -fx-background-color: rgba(16, 185, 129, 0.18);
+}
+
+.dark .nav-primary {
+    -fx-background-color: rgba(16, 185, 129, 0.15);
+}
+
+/* Icon Button */
+.icon-btn {
+    -fx-background-radius: 8;
+    -fx-padding: 8 12;
+}
+
+.icon-btn.danger {
+    -fx-text-fill: -fx-danger;
+}
+
+/* ============================
+   INPUTS
+   ============================ */
+.text-field,
+.choice-box,
+.combo-box,
+.spinner {
+    -fx-background-color: -fx-bg-card;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: -fx-border;
+    -fx-border-width: 1.5;
+    -fx-padding: 10 14;
+    -fx-text-fill: -fx-text;
+    -fx-prompt-text-fill: -fx-text-muted;
+}
+
+.text-field:focused,
+.choice-box:focused,
+.combo-box:focused {
+    -fx-border-color: -fx-accent;
+    -fx-effect: dropshadow(gaussian, rgba(16, 185, 129, 0.3), 8, 0.4, 0, 0);
+}
+
+/* ============================
+   TABLE VIEW (Elegante)
+   ============================ */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-background-radius: 12;
+    -fx-border-color: -fx-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+}
+
+/* Header */
+.table-view .column-header-background {
+    -fx-background-color: -fx-bg-card;
+    -fx-background-radius: 12 12 0 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: -fx-border;
+    -fx-border-width: 0 1 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-weight: 700;
+    -fx-font-size: 11px;
+    -fx-text-fill: -fx-text-muted;
+    -fx-text-transform: uppercase;
+}
+
+/* Rows */
+.table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: -fx-border;
+    -fx-border-width: 0 0 1 0;
+    -fx-text-fill: -fx-text;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: rgba(0, 0, 0, 0.02);
+}
+
+.dark .table-row-cell:odd {
+    -fx-background-color: rgba(255, 255, 255, 0.02);
+}
+
+.table-row-cell:hover {
+    -fx-background-color: rgba(16, 185, 129, 0.06);
+}
+
+.table-row-cell:selected {
+    -fx-background-color: rgba(16, 185, 129, 0.15);
+}
+
+.table-cell {
+    -fx-text-fill: -fx-text;
+    -fx-padding: 10 12;
+}
+
+/* ============================
+   TITLED PANE
+   ============================ */
+.titled-pane {
+    -fx-background-color: transparent;
+}
+
+.titled-pane > .title {
+    -fx-background-color: -fx-bg-card;
+    -fx-background-radius: 12 12 0 0;
+    -fx-border-color: -fx-border;
+    -fx-border-width: 1 1 0 1;
+    -fx-padding: 14 16;
+    -fx-font-weight: 800;
+    -fx-text-fill: -fx-text;
+}
+
+.titled-pane > .content {
+    -fx-background-color: -fx-bg-card;
+    -fx-background-radius: 0 0 12 12;
+    -fx-border-color: -fx-border;
+    -fx-border-width: 0 1 1 1;
+    -fx-padding: 16;
+}
+
+/* DARK MODE - TitledPane */
+.dark .titled-pane > .title {
+    -fx-background-color: rgba(24, 27, 33, 0.85);
+    -fx-text-fill: #f1f5f9;
+}
+
+.dark .titled-pane > .content {
+    -fx-background-color: rgba(24, 27, 33, 0.85);
+}
+
+.dark .titled-pane .title .text {
+    -fx-fill: #f1f5f9;
+}
+
+/* ============================
+   TOPBAR
+   ============================ */
+.topbar {
+    -fx-background-color: -fx-bg-card;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: -fx-border;
+    -fx-border-width: 1;
+    -fx-padding: 12 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 10, 0.2, 0, 2);
+}
+
+/* DARK MODE - Topbar */
+.dark .topbar {
+    -fx-background-color: rgba(24, 27, 33, 0.85);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 12, 0.3, 0, 3);
+}
+
+.dark .topbar .label {
+    -fx-text-fill: #f1f5f9;
+}
+
+/* ============================
+   STATUSBAR
+   ============================ */
+.statusbar {
+    -fx-background-color: transparent;
+    -fx-border-color: -fx-border;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 10 16;
+}
+
+.statusbar .label {
+    -fx-font-size: 11px;
+    -fx-text-fill: -fx-text-muted;
+}
+
+/* ============================
+   SCROLL
+   ============================ */
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: rgba(100, 116, 139, 0.3);
+    -fx-background-radius: 6;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: rgba(100, 116, 139, 0.5);
+}
+
+.dark .scroll-bar .thumb {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark .scroll-bar .thumb:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.35);
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+}
+
+/* ============================
+   SPLIT PANE
+   ============================ */
+.split-pane {
+    -fx-background-color: transparent;
+}
+
+.split-pane > .split-pane-divider {
+    -fx-background-color: -fx-border;
+    -fx-padding: 0 2 0 2;
+}
+
+/* ============================
+   CHARTS (Moderno)
+   ============================ */
+.chart {
+    -fx-background-color: -fx-bg-card;
+    -fx-background-radius: 16;
+    -fx-border-color: -fx-border;
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+    -fx-padding: 20;
+}
+
+.chart-title {
+    -fx-font-weight: 800;
+    -fx-font-size: 15px;
+    -fx-text-fill: -fx-text;
+}
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+}
+
+.axis {
+    -fx-tick-label-fill: -fx-text-muted;
+    -fx-font-size: 10px;
+}
+
+.axis-label {
+    -fx-text-fill: -fx-text-muted;
+    -fx-font-weight: 600;
+}
+
+/* ============================
+   DIALOG
+   ============================ */
+.dialog-pane {
+    -fx-background-color: -fx-bg-card;
+    -fx-background-radius: 16;
+    -fx-border-color: -fx-border;
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+    -fx-padding: 24;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 40, 0.4, 0, 10);
+}
+
+.dark .dialog-pane {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.7), 50, 0.5, 0, 12);
+}
+
+.dialog-pane:header .header-panel {
+    -fx-background-color: transparent;
+}
+
+.dialog-pane > .header-panel > .label {
+    -fx-font-weight: 800;
+    -fx-font-size: 16px;
+    -fx-text-fill: -fx-text;
+}
+
+/* ============================
+   SEPARATOR
+   ============================ */
+.separator {
+    -fx-background-color: -fx-border;
+}
+
+/* ============================
+   FLOWPANE & GRIDPANE
+   ============================ */
+.flow-pane,
+.grid-pane {
+    -fx-background-color: transparent;
+}
+
+/* ============================
+   TRANSIÇÕES
+   ============================ */
+.button,
+.card,
+.table-row-cell {
+    -fx-transition: all 0.15s ease-out;
+}
+
+/* ============================
+   FLOWPANE & GRIDPANE
+   ============================ */
+.flow-pane,
+.grid-pane {
+    -fx-background-color: transparent;
+}
+
+/* ============================
+   HOME ROOT
+   ============================ */
+.home-root {
+    -fx-background-color: transparent;
+}
+
+.content-root {
+    -fx-background-color: transparent;
+}
+
+/*Scrool carrossel */
+
+.carousel-scroll {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.carousel-scroll .scroll-bar:vertical {
+    -fx-pref-width: 0;
+    -fx-opacity: 0;
+}
+
+.carousel-scroll .scroll-bar:horizontal {
+    -fx-pref-height: 8;
+    -fx-background-color: transparent;
+}
+
+.carousel-scroll .scroll-bar:horizontal .thumb {
+    -fx-background-color: rgba(100, 116, 139, 0.4);
+    -fx-background-radius: 4;
+}
+
+.carousel-scroll .scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: rgba(100, 116, 139, 0.6);
+}
+
+.dark .carousel-scroll .scroll-bar:horizontal .thumb {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+}
+
+.dark .carousel-scroll .scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Template Card*/
+
+.template-card {
+    -fx-pref-width: 130px;
+    -fx-max-width: 130px;
+    -fx-min-width: 130px;
+    -fx-max-height: 100px;
+    -fx-padding: 8;
+}
+
+/* Carrossel premium */
+.templates-carousel {
+    -fx-padding: 20 20 20 20;
+    -fx-background-color: transparent;
+}
+
+.carousel-scroll {
+    -fx-border-width: 0;
+    -fx-background-color: transparent;
+}
+
+.carousel-scroll .scroll-bar:horizontal {
+    -fx-pref-height: 0;
+    -fx-opacity: 0;
+}
+
+.carousel-scroll .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Botões de navegação */
+.carousel-nav-btn {
+    -fx-background-color: rgba(15, 23, 42, 0.08);
+    -fx-background-radius: 50%;
+    -fx-min-width: 44px;
+    -fx-min-height: 44px;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-text-muted;
+    -fx-cursor: hand;
+}
+
+.carousel-nav-btn:hover {
+    -fx-background-color: rgba(16, 185, 129, 0.25);
+    -fx-text-fill: -fx-accent;
+    -fx-scale-x: 1.15;
+    -fx-scale-y: 1.15;
+}
+
+.carousel-nav-btn:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+
+
+
+/* ============================
+   TEMPLATE CARDS (CORRIGIDO)
+   ============================ */
+
+/* ===== TEXTO – LIGHT MODE ===== */
+.template-card-name,
+.template-card-price {
+    -fx-text-fill: #1f2937;
+}
+
+.template-card-size {
+    -fx-text-fill: #6b7280;
+}
+
+/* ===== CARD BASE (LIGHT MODE) ===== */
+.template-card {
+    -fx-background-color: linear-gradient(
+        to bottom,
+        #ffffff,
+        #f1f5f9
+    );
+    -fx-background-radius: 18;
+    -fx-border-radius: 18;
+    -fx-border-color: -fx-border;
+    -fx-border-width: 1;
+
+    -fx-padding: 14;
+    -fx-cursor: hand;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.12),
+        16,
+        0.25,
+        0,
+        6
+    );
+
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+}
+
+/* ===== HOVER – EFEITO DOCK ===== */
+.template-card:hover {
+    -fx-scale-x: 1.08;
+    -fx-scale-y: 1.08;
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.25),
+        28,
+        0.35,
+        0,
+        10
+    );
+
+    -fx-border-color: rgba(0,0,0,0.15);
+}
+
+/* ===== GLOW POR MÉTODO ===== */
+.template-card-pix:hover {
+    -fx-effect: dropshadow(gaussian, #22d3ee, 32, 0.6, 0, 10);
+}
+
+.template-card-dinheiro:hover {
+    -fx-effect: dropshadow(gaussian, #22c55e, 32, 0.6, 0, 10);
+}
+
+.template-card-cartao:hover {
+    -fx-effect: dropshadow(gaussian, #f59e0b, 32, 0.6, 0, 10);
+}
+
+/* ===== DARK MODE ===== */
+.dark .template-card {
+    -fx-background-color: linear-gradient(
+        to bottom,
+        #1f2937,
+        #111827
+    );
+    -fx-border-color: rgba(255,255,255,0.08);
+
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(0,0,0,0.6),
+        18,
+        0.3,
+        0,
+        6
+    );
+}
+
+.dark .template-card:hover {
+    -fx-effect: dropshadow(
+        gaussian,
+        rgba(255,255,255,0.25),
+        30,
+        0.45,
+        0,
+        12
+    );
+
+    -fx-border-color: rgba(255,255,255,0.25);
+}
+
+/* ===== TEXTO – DARK MODE ===== */
+.dark .template-card-name,
+.dark .template-card-price {
+    -fx-text-fill: #f1f5f9;
+}
+
+.dark .template-card-size {
+    -fx-text-fill: #94a3b8;
+}
+
+/* Ícones no dark */
+.dark .template-icon {
+    -fx-opacity: 0.9;
+}
+
+/* Força propagação do dark mode em TODOS os containers da CaixaView */
+.dark .border-pane,
+.dark .vbox,
+.dark .hbox,
+.dark .split-pane,
+.dark .stack-pane,
+.dark .scroll-pane,
+.dark .scroll-pane .viewport,
+.dark .grid-pane,
+.dark .flow-pane {
+    -fx-background-color: transparent;
+}
+
+/* Topbar no dark */
+.dark .topbar {
+    -fx-background-color: rgba(24, 27, 33, 0.85);
+    -fx-border-color: rgba(255, 255, 255, 0.08);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 12, 0.3, 0, 3);
+}
+
+.dark .topbar .label {
+    -fx-text-fill: #f1f5f9;
+}
+
+/* Cards no dark (já tem, mas reforça) */
+.dark .card {
+    -fx-background-color: rgba(24, 27, 33, 0.85);
+    -fx-border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* SplitPane divider no dark */
+.dark .split-pane-divider {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-padding: 0 2 0 2;
+}
+
+/* TableView header no dark (já tem, mas reforça) */
+.dark .table-view .column-header-background {
+    -fx-background-color: rgba(24, 27, 33, 0.85);
+}
+
+.dark .table-view .column-header .label {
+    -fx-text-fill: #94a3b8;
+}
+
+/* TextFields e ChoiceBox no dark */
+.dark .text-field,
+.dark .choice-box,
+.dark .combo-box-base {
+    -fx-background-color: rgba(15, 23, 42, 0.4);
+    -fx-text-fill: #f1f5f9;
+    -fx-prompt-text-fill: #64748b;
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Botões no dark (reforço) */
+.dark .button {
+    -fx-background-color: rgba(255, 255, 255, 0.06);
+    -fx-text-fill: #f1f5f9;
+}
+
+.dark .btn-primary {
+    -fx-background-color: linear-gradient(to bottom right, #10b981, #059669);
+}
+
+.dark .btn-danger {
+    -fx-background-color: #ef4444;
+}
+
+/* Separator no dark */
+.dark .separator *.line {
+    -fx-border-color: rgba(255, 255, 255, 0.08);
+}
+
+.dark .caixa-root,
+.dark .caixa-root * {
+    -fx-background-color: transparent;
+}
+
+/* ============================
+   HOME - PAINEL DE AVISOS
+   ============================ */
+
+/* ScrollPane da Home */
+.home-scroll {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.home-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Grid da Home */
+.home-grid {
+    -fx-background-color: transparent;
+}
+
+/* Painéis principais */
+.home-panel {
+    -fx-background-color: transparent;
+    -fx-min-height: 200px;
+}
+
+/* Título dos painéis */
+.panel-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: 900;
+    -fx-text-fill: -fx-text;
+    -fx-padding: 0 0 8 0;
+}
+
+/* ============================
+   CARDS DE ALERTA
+   ============================ */
+
+.alert-card {
+    -fx-background-color: -fx-bg-card;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
+    -fx-border-color: -fx-border;
+    -fx-border-width: 1;
+    -fx-padding: 14;
+    -fx-spacing: 6;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 10, 0.2, 0, 3);
+}
+
+.dark .alert-card {
+    -fx-background-color: rgba(24, 27, 33, 0.85);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 12, 0.3, 0, 4);
+}
+
+/* Tipos de Alerta */
+.alert-danger {
+    -fx-border-color: rgba(239, 68, 68, 0.4);
+    -fx-background-color: rgba(239, 68, 68, 0.05);
+}
+
+.dark .alert-danger {
+    -fx-border-color: rgba(239, 68, 68, 0.5);
+    -fx-background-color: rgba(239, 68, 68, 0.1);
+}
+
+.alert-warning {
+    -fx-border-color: rgba(245, 158, 11, 0.4);
+    -fx-background-color: rgba(245, 158, 11, 0.05);
+}
+
+.dark .alert-warning {
+    -fx-border-color: rgba(245, 158, 11, 0.5);
+    -fx-background-color: rgba(245, 158, 11, 0.1);
+}
+
+.alert-success {
+    -fx-border-color: rgba(16, 185, 129, 0.4);
+    -fx-background-color: rgba(16, 185, 129, 0.05);
+}
+
+.dark .alert-success {
+    -fx-border-color: rgba(16, 185, 129, 0.5);
+    -fx-background-color: rgba(16, 185, 129, 0.1);
+}
+
+.alert-info {
+    -fx-border-color: rgba(59, 130, 246, 0.4);
+    -fx-background-color: rgba(59, 130, 246, 0.05);
+}
+
+.dark .alert-info {
+    -fx-border-color: rgba(59, 130, 246, 0.5);
+    -fx-background-color: rgba(59, 130, 246, 0.1);
+}
+
+/* ============================
+   TEXTOS DOS CARDS
+   ============================ */
+
+.alert-title {
+    -fx-font-size: 12px;
+    -fx-font-weight: 800;
+    -fx-text-fill: -fx-text;
+    -fx-text-transform: uppercase;
+    -fx-letter-spacing: 0.3;
+}
+
+.alert-subtitle {
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -fx-text-muted;
+}
+
+.alert-message {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -fx-text;
+}
+
+.alert-value {
+    -fx-font-size: 20px;
+    -fx-font-weight: 900;
+    -fx-text-fill: -fx-text;
+}
+
+.alert-value-big {
+    -fx-font-size: 28px;
+    -fx-font-weight: 900;
+    -fx-text-fill: -fx-accent;
+}
+
+.alert-item {
+    -fx-font-size: 12px;
+    -fx-font-weight: 500;
+    -fx-text-fill: -fx-text-muted;
+    -fx-padding: 2 0 0 8;
+}
+
+.alert-more {
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -fx-accent;
+    -fx-padding: 4 0 0 8;
+}
+
+/* ============================
+   INFO LINES
+   ============================ */
+
+.info-label {
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-text-fill: -fx-text-muted;
+}
+
+.info-value {
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+    -fx-text-fill: -fx-text;
+}
+
+/* ============================
+   DARK MODE OVERRIDES
+   ============================ */
+
+.dark .panel-title,
+.dark .alert-title,
+.dark .alert-message,
+.dark .alert-value,
+.dark .alert-value-big,
+.dark .info-value {
+    -fx-text-fill: #f1f5f9;
+}
+
+.dark .alert-subtitle,
+.dark .alert-item,
+.dark .info-label {
+    -fx-text-fill: #94a3b8;
+}
+
+.dark .alert-more {
+    -fx-text-fill: #10b981;
+}
+
+/* Força transparência no dark */
+.dark .home-scroll,
+.dark .home-scroll > .viewport,
+.dark .home-grid,
+.dark .home-panel {
+    -fx-background-color: transparent;
+}

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="20"
+      styleClass="home-root">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <!-- AÇÕES PRINCIPAIS -->
+    <VBox spacing="12" styleClass="card">
+        <Label text="Ações principais" styleClass="section-title"/>
+
+        <HBox spacing="12">
+            <Button text="Abrir Caixa (F1)"
+                    fx:id="btnAbrirCaixa"
+                    styleClass="btn btn-primary"/>
+
+            <Button text="Dashboard (F2)"
+                    fx:id="btnDashboard"
+                    styleClass="btn btn-ghost"/>
+        </HBox>
+
+        <Button text="Fechar Caixa"
+                fx:id="btnFecharCaixa"
+                styleClass="btn btn-danger"/>
+    </VBox>
+
+    <!-- STATUS -->
+    <VBox spacing="8" styleClass="card">
+        <Label text="Status do sistema" styleClass="section-title"/>
+
+        <HBox spacing="10">
+            <Label text="Caixa:"/>
+            <Label fx:id="lblStatusCaixa" text="—" styleClass="status-value"/>
+        </HBox>
+
+        <HBox spacing="10">
+            <Label text="Banco de dados:"/>
+            <Label fx:id="lblStatusDb" text="OK" styleClass="status-ok"/>
+        </HBox>
+
+        <HBox spacing="10">
+            <Label text="Último backup:"/>
+            <Label fx:id="lblBackup" text="—"/>
+        </HBox>
+    </VBox>
+
+    <!-- ADMINISTRAÇÃO -->
+    <VBox spacing="12" styleClass="card">
+        <Label text="Administração" styleClass="section-title"/>
+
+        <FlowPane hgap="10" vgap="10">
+            <Button text="Estoque"
+                    fx:id="btnEstoque"
+                    styleClass="btn btn-ghost"/>
+
+            <Button text="Templates"
+                    styleClass="btn btn-ghost"/>
+
+            <Button text="Configurações"
+                    styleClass="btn btn-ghost"/>
+        </FlowPane>
+    </VBox>
+
+</VBox>

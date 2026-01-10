@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<DialogPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="br.com.fotocastro.ui.EstoqueEditController"
+            headerText="Produto de Estoque"
+            styleClass="card">
+
+    <content>
+        <GridPane hgap="10" vgap="10">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" minWidth="90"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <children>
+                <Label text="Nome:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtNome" promptText="ex.: Papel Fotográfico" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="text-field"/>
+
+                <Label text="Cor:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtCor" promptText="ex.: Branco" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="text-field"/>
+
+                <Label text="Tamanho:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtTamanho" promptText="ex.: 10x15, 20x30, A4" GridPane.rowIndex="2" GridPane.columnIndex="1" styleClass="text-field"/>
+
+                <Label text="Quantidade:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtQuantidade" promptText="ex.: 10" GridPane.rowIndex="3" GridPane.columnIndex="1" styleClass="text-field"/>
+
+                <Label text="Custo total do lote (R$):" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtCustoTotal" promptText="ex.: 100.00" GridPane.rowIndex="4" GridPane.columnIndex="1" styleClass="text-field"/>
+            </children>
+        </GridPane>
+    </content>
+
+    <buttonTypes>
+        <ButtonType text="Salvar"   buttonData="OK_DONE"/>
+        <ButtonType text="Cancelar" buttonData="CANCEL_CLOSE"/>
+    </buttonTypes>
+</DialogPane>

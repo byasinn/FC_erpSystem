@@ -1,0 +1,37 @@
+# Maven
+/target/
+/dependency-reduced-pom.xml
+
+# IDE
+/.idea/
+/*.iml
+/.project
+/.classpath
+/.settings/
+/.vscode/
+
+# SO
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Java
+*.class
+
+# JavaFX native packaging (se gerar app-image/installer)
+*/installer/
+*.exe
+*.msi
+
+# Banco local H2
+/data/
+*.db
+*.mv.db
+*.trace.db
+*.lock.db
+
+# Credenciais e configs locais
+*.env
+*.local.properties

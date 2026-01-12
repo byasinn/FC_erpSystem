@@ -1,71 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      spacing="20"
+<VBox xmlns="http://javafx.com/javafx/21" 
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="br.com.fotocastro.ui.HomeController"
+      spacing="15" 
       styleClass="home-root">
 
     <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
+        <Insets top="20" right="25" bottom="20" left="25"/>
     </padding>
 
-    <!-- AÇÕES PRINCIPAIS -->
-    <VBox spacing="12" styleClass="card">
-        <Label text="Ações principais" styleClass="section-title"/>
+    <!-- Cabeçalho + Status Caixa Atual -->
+    <HBox alignment="CENTER_LEFT" spacing="20">
+        <Label text="Início / Administração" styleClass="section-title" style="-fx-font-size: 22; -fx-font-weight: bold;"/>
+        
+        <Region HBox.hgrow="ALWAYS"/>
+        
+        <Label text="Caixa Atual:" style="-fx-font-weight: bold;"/>
+        <Label fx:id="lblStatusCaixa" text="—" styleClass="status-value"/>
+        
+        <!-- Botões rápidos de ação (mantendo compatibilidade com o antigo) -->
+        <Button text="Abrir Caixa" fx:id="btnAbrirCaixa" styleClass="btn btn-primary" visible="false"/>
+        <Button text="Fechar Caixa" fx:id="btnFecharCaixa" styleClass="btn btn-danger" visible="false"/>
+    </HBox>
 
-        <HBox spacing="12">
-            <Button text="Abrir Caixa (F1)"
-                    fx:id="btnAbrirCaixa"
-                    styleClass="btn btn-primary"/>
+    <!-- Abas principais -->
+    <TabPane fx:id="mainTabs" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
 
-            <Button text="Dashboard (F2)"
-                    fx:id="btnDashboard"
-                    styleClass="btn btn-ghost"/>
-        </HBox>
+        <!-- Aba 1: Caixas Fechados -->
+        <Tab text="Caixas Anteriores">
+            <VBox spacing="12" style="-fx-padding: 15;">
+                <TableView fx:id="tableFechamentos" VBox.vgrow="ALWAYS">
+                    <!-- Colunas serão adicionadas no controller -->
+                </TableView>
+                
+                <HBox spacing="10" alignment="CENTER_RIGHT">
+                    <Button text="Ver Detalhes / Imprimir" fx:id="btnVerDetalhes" styleClass="btn btn-primary"/>
+                    <Button text="Exportar PDF" fx:id="btnExportarPDF" styleClass="btn btn-secondary"/>
+                </HBox>
+            </VBox>
+        </Tab>
 
-        <Button text="Fechar Caixa"
-                fx:id="btnFecharCaixa"
-                styleClass="btn btn-danger"/>
-    </VBox>
+        <!-- Aba 2: Relatórios Rápidos -->
+        <Tab text="Relatórios">
+            <VBox spacing="15" style="-fx-padding: 15;">
+                <Label text="Relatórios disponíveis" styleClass="section-title"/>
+                
+                <FlowPane hgap="12" vgap="12">
+                    <Button text="Vendas Hoje" fx:id="btnRelHoje"/>
+                    <Button text="Vendas Últimos 7 Dias" fx:id="btnRelSemana"/>
+                    <Button text="Vendas Mês Atual" fx:id="btnRelMes"/>
+                    <Button text="Top Templates (30 dias)" fx:id="btnTopTemplates"/>
+                    <Button text="Vendas por Método Pagto" fx:id="btnRelMetodos"/>
+                </FlowPane>
+                
+                <!-- Área de preview / resultado -->
+                <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                    <VBox fx:id="relatorioContent" spacing="10"/>
+                </ScrollPane>
+                
+                <Label fx:id="lblRelatorioStatus" text="Selecione um relatório acima para visualizar" styleClass="placeholder-text"/>
+            </VBox>
+        </Tab>
 
-    <!-- STATUS -->
-    <VBox spacing="8" styleClass="card">
-        <Label text="Status do sistema" styleClass="section-title"/>
+        <!-- Aba 3: Avisos e Alertas -->
+        <Tab text="Avisos">
+            <VBox spacing="10" style="-fx-padding: 15;">
+                <ListView fx:id="listAvisos" VBox.vgrow="ALWAYS" styleClass="alert-list"/>
+                
+                <HBox spacing="10" alignment="CENTER_RIGHT">
+                    <Button text="Limpar Avisos Lidos" fx:id="btnLimparAvisos" styleClass="btn btn-ghost"/>
+                </HBox>
+            </VBox>
+        </Tab>
 
-        <HBox spacing="10">
-            <Label text="Caixa:"/>
-            <Label fx:id="lblStatusCaixa" text="—" styleClass="status-value"/>
-        </HBox>
+        <!-- Aba 4: Futuro / Expansão -->
+        <Tab text="Mais">
+            <VBox alignment="CENTER" spacing="25" style="-fx-padding: 40;">
+                <Label text="Em desenvolvimento..." styleClass="placeholder-text big"/>
+                <Label text="Em breve:" style="-fx-font-size: 16;"/>
+                <Label text="• Histórico de clientes frequentes" styleClass="placeholder-item"/>
+                <Label text="• Promoções e descontos automáticos" styleClass="placeholder-item"/>
+                <Label text="• Análise preditiva de vendas" styleClass="placeholder-item"/>
+                <Label text="• Integração com WhatsApp/Telegram" styleClass="placeholder-item"/>
+            </VBox>
+        </Tab>
 
-        <HBox spacing="10">
-            <Label text="Banco de dados:"/>
-            <Label fx:id="lblStatusDb" text="OK" styleClass="status-ok"/>
-        </HBox>
-
-        <HBox spacing="10">
-            <Label text="Último backup:"/>
-            <Label fx:id="lblBackup" text="—"/>
-        </HBox>
-    </VBox>
-
-    <!-- ADMINISTRAÇÃO -->
-    <VBox spacing="12" styleClass="card">
-        <Label text="Administração" styleClass="section-title"/>
-
-        <FlowPane hgap="10" vgap="10">
-            <Button text="Estoque"
-                    fx:id="btnEstoque"
-                    styleClass="btn btn-ghost"/>
-
-            <Button text="Templates"
-                    styleClass="btn btn-ghost"/>
-
-            <Button text="Configurações"
-                    styleClass="btn btn-ghost"/>
-        </FlowPane>
-    </VBox>
+    </TabPane>
 
 </VBox>

@@ -19,7 +19,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import br.com.fotocastro.infra.DatabaseConfig;
+import br.com.fotocastro.config.DatabaseConfig;
 
 public class MainController {
 

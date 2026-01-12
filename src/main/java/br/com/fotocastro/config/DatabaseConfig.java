@@ -1,4 +1,4 @@
-package br.com.fotocastro.infra;
+package br.com.fotocastro.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

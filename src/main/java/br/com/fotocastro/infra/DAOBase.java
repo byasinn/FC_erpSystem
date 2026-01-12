@@ -10,6 +10,8 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import br.com.fotocastro.config.DatabaseConfig;
+
 /**
  * Classe base para todos os DAOs.
  * Fornece acesso ao DataSource e métodos utilitários comuns.
